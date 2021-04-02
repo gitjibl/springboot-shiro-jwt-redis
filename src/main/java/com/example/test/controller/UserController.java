@@ -1,6 +1,7 @@
 package com.example.test.controller;
 
 import com.example.test.util.Result;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,8 @@ public class UserController {
     @RequiresPermissions("user:list")
     @RequestMapping("list")
     public Result userList() {
-        return Result.ok("获取用户信息");
+        throw new AuthenticationException("用户不存在!");
+//        return Result.ok("获取用户信息");
     }
 
     @RequiresPermissions("user:add")
